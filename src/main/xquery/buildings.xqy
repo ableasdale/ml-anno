@@ -47,13 +47,17 @@ element div { attribute class {"row"},
             element dd {fn:data($i/@unlock) }  
         } 
     },
-    element div {attribute class {"col-md-6"},
+    element div {attribute class {"col-md-3"},
         if($i/Upgrade)
         then(common:process-upgrades($i/Upgrade))
         else(common:process-costs($i/Costs)),
         "*"
         
+    },
+     element div {attribute class {"col-md-3"},
+        element img {attribute src {concat("/assets/images/buildings/",fn:data($i/@filename),".png")} } 
     }
+    
 },
 element hr {" "}
 )
