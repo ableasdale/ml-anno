@@ -103,7 +103,7 @@ declare function common:nav($sub as xs:string) as element(div){
                 </button>
                 <img style="margin: 0.65em 0.4em 0 0.7em;" src="/assets/images/logo.png"/>
             </div>            
-            { common:nav-item($sub, ("Default", "Goods", "Monuments", "Buildings"))}            
+            { common:nav-item($sub, ("Default", "Goods", "Monuments", "Buildings", "Population", "Tech Trees"))}            
             <!--li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visual Diff <span class="caret"></span></a>
                 <ul class="dropdown-menu">                  

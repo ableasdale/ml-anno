@@ -9,7 +9,7 @@ element div {
 
 element ul {
 for $i in //Goods/Good
-return element li { fn:data($i/@name) }
+return element li { fn:data($i/@id)," ",fn:data($i/@name), " (", fn:data($i/@category),")" }
 
 } 
 })
