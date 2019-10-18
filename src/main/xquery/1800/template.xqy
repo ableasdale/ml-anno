@@ -66,19 +66,24 @@ element div {
             element tr {
                 element th {"GUID"},
                 element th {"Name"},
+                element th {"Item Type"},
                 element th {"Allocation"},
                 element th {"Rarity"},
                 element th {"Trade Price"},
-                element th {"Effect Target"}
+                element th {"Effect Target"},
+                element th {"Culture Attractiveness"}
             }
         },
         element tbody {
             for $i in cts:search(doc(),
                 cts:element-range-query(xs:QName("Template"), "=", $QUERY)) 
+                (: Todo - tradeprice as index and cts:order? :)
+                order by xs:unsignedLong($i/Asset/Values/Item/TradePrice) descending
                 return 
                 element tr {
                     element td {element a {attribute href {"/asset.xqy?guid="||fn:data($i/Asset/Values/Standard/GUID)}, fn:data($i/Asset/Values/Standard/GUID)}},
                     element td {if(fn:data($i/Asset/Values/Text/LocaText/English/Text)) then (fn:data($i/Asset/Values/Text/LocaText/English/Text)) else (fn:data($i/Asset/Values/Standard/Name))},
+                    element td {fn:data($i/Asset/Values/Item/ItemType)},
                     element td {fn:data($i/Asset/Values/Item/Allocation)},
                     element td {fn:data($i/Asset/Values/Item/Rarity)},
                     element td {fn:data($i/Asset/Values/Item/TradePrice)},
@@ -89,7 +94,8 @@ element div {
                                     return (element a {attribute href {"/asset.xqy?guid="||$j}, $j}," ")
                         )    
                         else ()
-                    }            
+                    },
+                    element td {fn:data($i/Asset/Values/CultureUpgrade/AttractivenessUpgrade/Value)}        
                 }
         }
     }
